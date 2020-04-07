@@ -15,7 +15,7 @@ export default {
       name: 'discojs',
       globals: {
         bottleneck: 'Bottleneck',
-        'isomorphic-fetch': 'fetch',
+        'cross-fetch': 'fetch',
       },
     },
     {
@@ -24,6 +24,6 @@ export default {
       name: 'discojs',
     },
   ],
-  external: ['bottleneck', 'isomorphic-fetch', 'querystring'],
+  external: ['bottleneck', 'cross-fetch', 'querystring'],
   plugins: [json(), babel({ exclude: 'node_modules/**' }), builtins(), commonjs(), terser()],
 }

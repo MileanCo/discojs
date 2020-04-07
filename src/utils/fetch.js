@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'cross-fetch'
 
 import { AuthError, DiscogsError } from '../errors'
 

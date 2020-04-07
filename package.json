@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "bottleneck": "^2.19.4",
-    "isomorphic-fetch": "^2.2.1",
+    "cross-fetch": "^2.2.1",
     "querystring": "^0.2.0"
   },
   "devDependencies": {
