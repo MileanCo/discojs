@@ -22,6 +22,8 @@ export default function searchDatabase(
     track,
     submitter,
     contributor,
+    per_page,
+    page,
   } = {},
   paginationOpt = {},
 ) {
@@ -152,6 +154,20 @@ export default function searchDatabase(
       opt.contributor = contributor
     } else {
       return Promise.reject(new TypeError(`[searchDatabaseMethod] contributor must be a string (${contributor})`))
+    }
+  }
+  if (per_page) {
+    if (typeof contributor === 'string' || typeof contributor === 'integer') {
+      paginationOpt.per_page = per_page;
+    } else {
+      return Promise.reject(new TypeError(`[searchDatabaseMethod] per_page must be an integer (${contributor})`))
+    }
+  }
+  if (page) {
+    if (typeof contributor === 'string' || typeof contributor === 'integer') {
+      paginationOpt.page = page;
+    } else {
+      return Promise.reject(new TypeError(`[searchDatabaseMethod] page must be an integer (${contributor})`))
     }
   }
   return this._fetch({
