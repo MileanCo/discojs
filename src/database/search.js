@@ -157,19 +157,20 @@ export default function searchDatabase(
     }
   }
   if (per_page) {
-    if (typeof contributor === 'string' || typeof contributor === 'integer') {
+    if (typeof per_page === 'string' || typeof per_page === 'integer') {
       paginationOpt.per_page = per_page;
     } else {
-      return Promise.reject(new TypeError(`[searchDatabaseMethod] per_page must be an integer (${contributor})`))
+      return Promise.reject(new TypeError(`[searchDatabaseMethod] per_page must be an integer (${per_page})`))
     }
   }
   if (page) {
-    if (typeof contributor === 'string' || typeof contributor === 'integer') {
+    if (typeof page === 'string' || typeof page === 'integer') {
       paginationOpt.page = page;
     } else {
-      return Promise.reject(new TypeError(`[searchDatabaseMethod] page must be an integer (${contributor})`))
+      return Promise.reject(new TypeError(`[searchDatabaseMethod] page must be an integer (${page})`))
     }
   }
+  console.log(paginationOpt);
   return this._fetch({
     uri: '/database/search',
     query: {
