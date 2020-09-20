@@ -158,7 +158,7 @@ export default function searchDatabase(
   }
   if (per_page) {
     if (typeof per_page === 'string' || typeof per_page === 'integer') {
-      paginationOpt.per_page = per_page;
+      paginationOpt.perPage = per_page;
     } else {
       return Promise.reject(new TypeError(`[searchDatabaseMethod] per_page must be an integer (${per_page})`))
     }

@@ -24,6 +24,8 @@ export default class Discojs {
     userAgent = DEFAULT_USER_AGENT,
     outputFormat = DEFAULT_OUTPUT_FORMAT,
     userToken,
+    token,
+    token_secret,
     consumerKey,
     consumerSecret,
     requestLimit = 25,
@@ -54,6 +56,8 @@ export default class Discojs {
         this.auth = {
           level: 2,
           userToken,
+          token,
+          token_secret,
         }
       } else {
         if (typeof consumerKey !== 'string') {
@@ -120,7 +124,10 @@ export default class Discojs {
       if (this.auth.level === 1) {
         opt.headers.Authorization = `Discogs key=${this.auth.consumerKey}, secret=${this.auth.consumerSecret}`
       } else {
-        opt.headers.Authorization = `Discogs token=${this.auth.userToken}`
+        const timestamp = Date.now();
+        opt.headers.Authorization =
+`OAuth key=${this.auth.consumerKey} oauth_consumer_key=${this.auth.consumerKey}, oauth_nonce=${timestamp}, oauth_signature=${this.auth.consumerSecret}&", oauth_signature_method="PLAINTEXT", oauth_timestamp=${timestamp}, oauth_token=${this.auth.token}, oauth_token_secret=${this.auth.token_secret}`;
+        // opt.headers.Authorization = `Discogs token=${this.auth.userToken}`
       }
     }
     return this.limiter.schedule(() =>
